@@ -1,0 +1,57 @@
+import Chico.*
+import Elementos.*
+import Legion.*
+
+
+const trajeT 	  = new TrajeTerrorifico()
+const trajeTierno = new TrajeTierno()
+const chico1      = new Chico(actitud = 1, elementosPuestos = #{trajeT})
+const chico2      = new Chico()
+const chico3      = new Chico(actitud = 10, elementosPuestos = #{trajeT})
+const adultoIntolerante = new Comun(cantidadDeNenesConMuchosCaramelosQueIntentaronAsustarlo = 0)
+const adultoTolerante = new Comun(cantidadDeNenesConMuchosCaramelosQueIntentaronAsustarlo = 1)
+const adultoNecio = new Necio()
+const legion1 = legionCreator.create([chico1,chico3])
+
+describe "Punto 1 Parte 1" {
+
+	test "La capacidad de susto de un chico con 1 de actitud y un traje terrorifico es igual a la capacidad de susto del traje" {
+
+		assert.equals(trajeT.sustoGenerado(), chico1.capacidadDeSusto())
+
+	}
+}
+
+describe "Punto 2 Parte 1"{
+	test "Un nene asusta a adulto comun que nunca fue intentado asustar por un nene con muchos caramelos, entonces se asusta y da 0 caramelos"{
+		chico1.intentarAsustarA(adultoIntolerante)
+		assert.equals(0, chico1.caramelos())
+	}
+	
+	test "Un nene no puede asustar a un adulto necio"{
+		assert.notThat(adultoNecio.seAsustaPor(chico1))
+	}
+}
+
+describe "Punto 1 Parte 2"{
+	test "Se crea una legion"{
+		assert.doesNotThrowException{legionCreator.create([chico1, chico2])}
+	}
+	
+	test "No se crea una legion por falta de miembros"{
+		assert.throwsExceptionWithMessage("No hay suficientes miembros",{legionCreator.create([chico1])})
+	}
+}
+
+describe "Punto 2 Parte 2"{
+	test "Una legion intenta asustar a un necio y no recibe caramelos"{
+		legion1.intentarAsustarA(adultoNecio)
+		assert.equals(0, legion1.lider().caramelos())
+	}
+	
+	test "Una legion intetarAsustar a un adulto tolerante y el lider recibe caramelos"{
+		legion1.intentarAsustarA(adultoTolerante)
+		assert.that(adultoTolerante.seAsustaPor(legion1))
+		assert.equals(5, legion1.lider().caramelos())
+	}
+}
