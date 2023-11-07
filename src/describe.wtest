@@ -1,13 +1,15 @@
 import Chico.*
 import Elementos.*
 import Legion.*
-
+import Adulto.*
+import Barrio.*
+import EstadoSalud.*
 
 const trajeT 	  = new TrajeTerrorifico()
 const trajeTierno = new TrajeTierno()
-const chico1      = new Chico(actitud = 1, elementosPuestos = #{trajeT})
-const chico2      = new Chico()
-const chico3      = new Chico(actitud = 10, elementosPuestos = #{trajeT})
+const chico1      = new Chico(estado = new Sano(actitud = 1),elementosPuestos = #{trajeT})
+const chico2      = new Chico(estado = new Sano(actitud = 1))
+const chico3      = new Chico(estado = new Sano(actitud = 1),elementosPuestos = #{trajeT})
 const adultoIntolerante = new Comun(cantidadDeNenesConMuchosCaramelosQueIntentaronAsustarlo = 0)
 const adultoTolerante = new Comun(cantidadDeNenesConMuchosCaramelosQueIntentaronAsustarlo = 1)
 const adultoNecio = new Necio()
