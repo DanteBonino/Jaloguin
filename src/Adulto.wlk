@@ -31,11 +31,11 @@ class Comun inherits Adulto{
 	method tolerancia() = 10 * cantidadDeNenesConMuchosCaramelosQueIntentaronAsustarlo
 }
 
-class Abuelo inherits Adulto{
+class Abuelo inherits Comun{
 
 	override method seAsustaPor(_unAsustador) = true
 	
-	override method cantidadDeCaramelos() = 0 /* No se qué hacer */
+	override method cantidadDeCaramelos() = super()/2
 	
 }
 

@@ -6,7 +6,7 @@ class Estado{
 	
 	method actitud(unaPersona) = actitud * self.factorDeActitud()
 	
-	method factorDeActitud()
+	method factorDeActitud() = 1
 	
 	method comer(unaPersona, unaCantidad){
 		unaPersona.validarQuePuedaComer(unaCantidad)
@@ -24,15 +24,13 @@ class Estado{
 
 class  Sano inherits Estado{
 	override method estadoNuevo() = new Empachado()
-	
-	override method factorDeActitud() = 1
 }
 
 
 class Empachado inherits Estado{
 	override method estadoNuevo() = enCama
 	
-	override method factorDeActitud() = 0.5
+	override method factorDeActitud() = super()/2
 }
 
 object enCama{
