@@ -32,7 +32,7 @@ class  Sano inherits Estado{
 class Empachado inherits Estado{
 	override method estadoNuevo() = enCama
 	
-	override method factorDeActitud() = 2
+	override method factorDeActitud() = 0.5
 }
 
 object enCama{
